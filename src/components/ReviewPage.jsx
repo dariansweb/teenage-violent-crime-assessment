@@ -86,6 +86,16 @@ const ReviewPage = () => {
         >
           ✅ Submit Survey
         </button>
+        <button
+          onClick={() => {
+            resetSurvey()
+            toast.success('Survey reset!')
+            navigate('/survey')
+          }}
+          className="px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+        >
+          🔄 Reset Survey
+        </button>
       </div>
     </div>
   )
