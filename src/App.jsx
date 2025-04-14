@@ -1,18 +1,19 @@
-// src/App.jsx
 import React from 'react'
-import SurveyForm from './components/SurveyForm'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import SurveyWizard from './components/SurveyWizard'
-import './index.css'
+import ReviewPage from './components/ReviewPage'
+import SubmittedPage from './components/SubmittedPage'
 
 function App() {
-
   return (
-    <div className="min-h-screen p-6 bg-gray-100">
-      <h1 className="text-3xl font-bold text-center mb-8">
-        Teen Violent Crime Survey
-      </h1>      
-      <SurveyWizard />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to="/survey" replace />} />
+        <Route path="/survey" element={<SurveyWizard />} />
+        <Route path="/review" element={<ReviewPage />} />
+        <Route path="/submitted" element={<SubmittedPage />} />
+      </Routes>
+    </Router>
   )
 }
 

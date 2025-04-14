@@ -1,6 +1,8 @@
 import React from 'react'
 import surveyData from '../data/teen_violent_crime_survey.json'
 import { useSurvey } from '../contexts/SurveyContext'
+import CSVExportButton from './CSVExportButton'
+import { useNavigate } from 'react-router-dom'
 
 const SurveyWizard = () => {
   const {
@@ -10,6 +12,8 @@ const SurveyWizard = () => {
     setCurrentStep,
     resetSurvey,
   } = useSurvey()
+  
+  const navigate = useNavigate()
 
   const handleNext = () => {
     if (currentStep < surveyData.length - 1) setCurrentStep(currentStep + 1)
@@ -106,13 +110,13 @@ const SurveyWizard = () => {
           >
             ← Back
           </button>
-
           {currentStep === surveyData.length - 1 ? (
             <button
-              type="submit"
-              className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+              type="button"
+              onClick={() => navigate('/review')}
+              className="px-6 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
             >
-              Submit Survey
+              Review My Answers →
             </button>
           ) : (
             <button
@@ -130,6 +134,7 @@ const SurveyWizard = () => {
           >
             Reset Survey
           </button>
+          <CSVExportButton />
         </div>
       </form>
     </div>
