@@ -1,0 +1,200 @@
+[
+  {
+    "section": "A. Introduction",
+    "questions": [
+      {
+        "question": "How ARE YOU FEELING today?",
+        "type": "text"
+      },
+      {
+        "question": "As you sit in your cell, what do you mostly think about?",
+        "type": "text"
+      },
+      {
+        "question": "Is there one or more people you think about more than others?",
+        "followUps": [
+          "WHO?",
+          "WHY?"
+        ],
+        "type": "text"
+      }
+    ]
+  },
+  {
+    "section": "B. Background",
+    "questions": [
+      {
+        "question": "Age:",
+        "type": "number"
+      },
+      {
+        "question": "Highest Grade Completed:",
+        "type": "text"
+      },
+      {
+        "question": "Do you know your Father?",
+        "followUps": [
+          "If so, how old is he?",
+          "What is your relationship with your Father?"
+        ],
+        "type": "text"
+      },
+      {
+        "question": "Do you know your Mother?",
+        "followUps": [
+          "How old is she?",
+          "What's the relationship with your Mother?"
+        ],
+        "type": "text"
+      },
+      {
+        "question": "Do you have Grandparents?",
+        "followUps": [
+          "Have they been involved in your life?",
+          "How?"
+        ],
+        "type": "text"
+      },
+      {
+        "question": "Do you have siblings?",
+        "followUps": [
+          "If yes, what is the gender and age of each?"
+        ],
+        "type": "text"
+      },
+      {
+        "question": "Have other relatives been involved in your life?",
+        "followUps": [
+          "Which relations and type of involvement?"
+        ],
+        "type": "text"
+      },
+      {
+        "question": "What individual(s) have influenced your life either positively or negatively?",
+        "type": "text"
+      },
+      {
+        "question": "If anyone in your family has been murdered, wounded by gunfire, or incarcerated for criminal behavior, please tell who and what were their circumstances?",
+        "type": "text"
+      },
+      {
+        "question": "Do you recall visiting the doctor or dentist for health and wellness check-ups?",
+        "type": "text"
+      },
+      {
+        "question": "Were you ever prescribed any types of medication to take?",
+        "followUps": [
+          "Which ones?"
+        ],
+        "type": "text"
+      },
+      {
+        "question": "While living at home, did you always have plenty of food to eat?",
+        "followUps": [
+          "Do you recall going to bed hungry?",
+          "Did you have food to eat on the weekends?"
+        ],
+        "type": "text"
+      }
+    ]
+  },
+  {
+    "section": "C. Education",
+    "questions": [
+      {
+        "question": "Do you remember any of your childcare experiences before starting Kindergarten?",
+        "type": "text"
+      },
+      {
+        "question": "Do you remember any of your early childhood/elementary school educational experiences?",
+        "type": "text"
+      },
+      {
+        "question": "Did you like going to school?",
+        "followUps": [
+          "If yes, why?",
+          "If not, why?"
+        ],
+        "type": "text"
+      },
+      {
+        "question": "Do you recall having problems at school with your teachers, administrators or students?",
+        "type": "text"
+      },
+      {
+        "question": "Was school difficult for you?",
+        "followUps": [
+          "If yes, what areas did you find most challenging?"
+        ],
+        "type": "text"
+      },
+      {
+        "question": "Did you make good grades?",
+        "type": "text"
+      },
+      {
+        "question": "Did you participate in extracurricular activities, like visiting the Boys & Girls Club? Or other activities?",
+        "type": "text"
+      },
+      {
+        "question": "Do you participate in team sports? Football, Basketball, Baseball, Track?",
+        "type": "text"
+      },
+      {
+        "question": "If yes, do you remember your coaches?",
+        "followUps": [
+          "What type of relationship did you have with your coaches?"
+        ],
+        "type": "text"
+      }
+    ]
+  },
+  {
+    "section": "D. MORAL/FAITH",
+    "questions": [
+      {
+        "question": "Did you have a church home or ever attend church?",
+        "followUps": [
+          "If so, who took you?"
+        ],
+        "type": "text"
+      },
+      {
+        "question": "Do you know any Pastors or Religious Leaders?",
+        "type": "text"
+      },
+      {
+        "question": "Were you ever baptized or accept the teachings of your faith as your personal beliefs?",
+        "type": "text"
+      },
+      {
+        "question": "Do you feel that you know or have a relationship with Jesus Christ?",
+        "type": "text"
+      }
+    ]
+  },
+  {
+    "section": "E. CRIMINAL BEHAVIOR",
+    "questions": [
+      {
+        "question": "How old were you when you committed your first criminal offense?",
+        "type": "number"
+      },
+      {
+        "question": "How many times were you involved in a criminal act before being arrested for the current offense for which you are incarcerated?",
+        "type": "text"
+      },
+      {
+        "question": "Regarding your criminal history, please answer each of the following:",
+        "subQuestions": [
+          "Did someone ask you or tell you to commit the crime? What was your relationship to them?",
+          "What did you do and why did you decide to do it?",
+          "When did you do it after being asked or told to do it?",
+          "How did you do it and were you armed to do it?",
+          "Why did you feel like you needed to do it?"
+        ],
+        "type": "text"
+      }
+    ]
+  }
+]
