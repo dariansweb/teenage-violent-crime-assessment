@@ -1,73 +1,135 @@
-import React from 'react'
-import surveyData from '../data/teen_violent_crime_survey.json'
-import { useSurvey } from '../contexts/SurveyContext'
-import CSVExportButton from './CSVExportButton'
+import React, { useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useSurvey } from '../contexts/SurveyContext'
+import surveyData from '../data/teen_violent_crime_survey.json'
+import { useForm, Controller } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+import toast from 'react-hot-toast'
 
 const SurveyWizard = () => {
-  const {
-    responses,
-    updateResponse,
-    currentStep,
-    setCurrentStep,
-    resetSurvey,
-  } = useSurvey()
-  
+  const { responses, updateResponse, currentStep, setCurrentStep } = useSurvey()
+
   const navigate = useNavigate()
 
-  const handleNext = () => {
-    if (currentStep < surveyData.length - 1) setCurrentStep(currentStep + 1)
+  const currentSection = surveyData[currentStep]
+  
+  // 🔁 Build validation schema dynamically for the current section
+  const schema = useMemo(() => {
+    const shape = {}
+    currentSection.questions.forEach((q) => {
+      shape[q.id] = yup.string().required('This field is required')
+    })
+    return yup.object().shape(shape)
+  }, [currentSection])
+
+  const {
+    control,
+    trigger,
+    formState: { errors },
+    getValues,
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: 'onChange',
+    defaultValues: responses,
+  })
+
+  // ⏪ Update inputs when moving between steps
+  useEffect(() => {
+    reset(
+      surveyData[currentStep].questions.reduce((acc, q) => {
+        acc[q.id] = responses[q.id] || ''
+        return acc
+      }, {}),
+    )
+  }, [currentStep, reset])
+
+  const handleNext = async () => {
+    const isValid = await trigger()
+    if (isValid) {
+      const values = getValues()
+      Object.entries(values).forEach(([id, val]) => updateResponse(id, val))
+      toast.success('✅ Progress saved!')
+      setCurrentStep(currentStep + 1)
+    }    
   }
 
   const handleBack = () => {
-    if (currentStep > 0) setCurrentStep(currentStep - 1)
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1)
+    }
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Survey responses:', responses)
-    alert('Survey submitted! Check the console for results.')
+  const handleReview = async () => {
+    const isValid = await trigger()
+    if (isValid) {
+      const values = getValues()
+      Object.entries(values).forEach(([id, val]) => updateResponse(id, val))
+      navigate('/review')
+    }
   }
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 px-4 py-8">
-      {/* 🔢 Section Tabs */}
+      <h1 className="text-3xl font-bold mb-6 text-center">
+        Teen Violent Crime Survey
+      </h1>
+
+      {/* 🔖 Tabs */}
       <div className="flex flex-wrap justify-center gap-2 mb-8">
-        {surveyData.map((section, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentStep(index)}
-            className={`px-4 py-2 rounded-full border ${
-              index === currentStep
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 text-gray-700'
-            }`}
-          >
-            {section.section}
-          </button>
-        ))}
+        {surveyData.map((section, index) => {
+          const isComplete = section.questions.some((q) => responses[q.id])
+          return (
+            <button
+              key={index}
+              onClick={() => setCurrentStep(index)}
+              className={`px-4 py-2 rounded-full border flex items-center gap-2 ${
+                index === currentStep
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-200 text-gray-700'
+              }`}
+            >
+              {section.section}
+              {isComplete && <span className="text-green-500 text-xl">✓</span>}
+            </button>
+          )
+        })}
       </div>
 
-      {/* 📝 Survey Section Form */}
-      <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl mx-auto">
-        <h2 className="text-2xl font-bold mb-4">
-          {surveyData[currentStep].section}
+      {/* 📝 Survey Form */}
+      <form className="space-y-6 max-w-3xl mx-auto">
+        <h2 className="text-2xl font-semibold mb-4">
+          {currentSection.section}
         </h2>
 
-        {surveyData[currentStep].questions.map((q) => (
+        {currentSection.questions.map((q) => (
           <div key={q.id} className="mb-4">
             <label htmlFor={q.id} className="block font-medium mb-1">
               {q.question}
             </label>
-            <input
-              id={q.id}
+
+            <Controller
               name={q.id}
-              type={q.type}
-              value={responses[q.id] || ''}
-              onChange={(e) => updateResponse(q.id, e.target.value)}
-              className="w-full p-2 border rounded bg-white border-gray-300"
+              control={control}
+              defaultValue={responses[q.id] || ''}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  id={q.id}
+                  type={q.type || 'text'}
+                  className="w-full p-2 border rounded bg-white border-gray-300"
+                />
+              )}
             />
 
+            {errors[q.id] && (
+              <p className="text-red-600 text-sm mt-1">
+                {errors[q.id]?.message}
+              </p>
+            )}
+
+            {/* 🔁 Follow-up Questions */}
             {q.followUps?.map((fu, idx) => {
               const followId = `${q.id}_fu${idx}`
               return (
@@ -83,6 +145,7 @@ const SurveyWizard = () => {
               )
             })}
 
+            {/* 🔁 Sub-Questions */}
             {q.subQuestions?.map((sq, idx) => {
               const subId = `${q.id}_sub${idx}`
               return (
@@ -100,23 +163,24 @@ const SurveyWizard = () => {
           </div>
         ))}
 
-        {/* 🚦 Navigation Buttons */}
+        {/* ⏭️ Wizard Buttons */}
         <div className="flex justify-between pt-6">
           <button
             type="button"
-            disabled={currentStep === 0}
             onClick={handleBack}
+            disabled={currentStep === 0}
             className="px-4 py-2 bg-gray-400 text-white rounded disabled:opacity-50"
           >
             ← Back
           </button>
+
           {currentStep === surveyData.length - 1 ? (
             <button
               type="button"
-              onClick={() => navigate('/review')}
+              onClick={handleReview}
               className="px-6 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
             >
-              Review My Answers →
+              Review Answers →
             </button>
           ) : (
             <button
@@ -127,14 +191,6 @@ const SurveyWizard = () => {
               Next →
             </button>
           )}
-          <button
-            type="button"
-            onClick={resetSurvey}
-            className="mt-4 block mx-auto px-4 py-2 text-sm bg-red-500 text-white rounded hover:bg-red-600"
-          >
-            Reset Survey
-          </button>
-          <CSVExportButton />
         </div>
       </form>
     </div>
