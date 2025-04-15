@@ -1,1 +1,22 @@
-@import "tailwindcss";
+/* Optional, if you want to layer stuff manually instead of using the import above:
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*/
+
+@import 'tailwindcss';
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

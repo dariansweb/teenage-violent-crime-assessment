@@ -1,11 +1,20 @@
-# 🧠 Teenage Violent Crime Assessment — Survey App
-
-Live Site: [https://teenage-violent-crime-assessment.vercel.app/survey](https://teenage-violent-crime-assessment.vercel.app/)  
-GitHub: [https://github.com/dariansweb/teenage-violent-crime-assessment](https://github.com/dariansweb/teenage-violent-crime-assessment)
-
+> **JJIS – Juvenile Justice Informational Survey #1**
+> Survey #1: Teenage Violent Crime Assessment
 ---
 
-## 📋 Overview
+### Demo Site: 
+[Teenage Violent Crime Assessment](https://teenage-violent-crime-assessment.vercel.app/)  
+
+---
+### 📍 Designed for Juvenile Justice & Treatment Programs
+
+**A structured, multi-phase survey system for adjudicated youth involved in violent or at-risk behavior.**  
+
+Built to assist case managers, therapists, and correctional staff in identifying root causes, environmental factors, and behavioral health patterns through compassionate, data-driven insight.
+
+
+--- 
+### 📋 Overview
 
 This project is a modern, dynamic, and user-friendly **survey web application** designed to assess potential risk factors and backgrounds associated with teenage violent crime. It is intended as a compassionate, accessible data-collection tool for mental health professionals, researchers, and institutions.
 
@@ -13,7 +22,7 @@ This app uses a **multi-step wizard interface**, autosaves progress, validates i
 
 ---
 
-## ✨ Features
+### ✨ Features
 
 - ✅ Multi-step form wizard with tabs for each section
 - ✅ Completion checkmarks per section
@@ -30,7 +39,7 @@ This app uses a **multi-step wizard interface**, autosaves progress, validates i
 
 ---
 
-## 🧱 Technology Stack
+### 🧱 Technology Stack
 
 | Tech               | Purpose                                  |
 |--------------------|-------------------------------------------|
@@ -46,14 +55,14 @@ This app uses a **multi-step wizard interface**, autosaves progress, validates i
 
 ---
 
-## 🚀 Getting Started
+### 🚀 Getting Started
 
-### 📦 Prerequisites
+#### 📦 Prerequisites
 
 - Node.js ≥ 16
 - npm
 
-### 🔧 Install Dependencies
+#### 🔧 Install Dependencies
 
 ```bash
 npm install

@@ -4,7 +4,7 @@
     "questions": [
       {
         "id": "q_a_01",
-        "question": "How ARE YOU FEELING today?",
+        "question": "How are you feeling today?",
         "type": "text"
       },
       {
@@ -16,8 +16,8 @@
         "id": "q_a_03",        
         "question": "Is there one or more people you think about more than others?",
         "followUps": [
-          "WHO?",
-          "WHY?"
+          "Who?",
+          "Why?"
         ],
         "type": "text"
       }
@@ -174,7 +174,7 @@
     ]
   },
   {
-    "section": "D. MORAL/FAITH",
+    "section": "D. Moral/Faith",
     "questions": [
       {
         "id": "q_d_01",        
@@ -202,7 +202,7 @@
     ]
   },
   {
-    "section": "E. CRIMINAL BEHAVIOR",
+    "section": "E. Criminal Behavior",
     "questions": [
       {
         "id": "q_e_01",        

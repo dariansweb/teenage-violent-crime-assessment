@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSurvey } from '../contexts/SurveyContext'
 import surveyData from '../data/teen_violent_crime_survey.json'
 import CSVExportButton from './CSVExportButton'
 import toast from 'react-hot-toast'
+import EmailModal from './EmailModal'
 
 const ReviewPage = () => {
   const { responses, setCurrentStep, resetSurvey } = useSurvey()
+  const [showModal, setShowModal] = useState(false)
+
   const navigate = useNavigate()
 
   const handleEditSection = (index) => {
@@ -14,12 +17,12 @@ const ReviewPage = () => {
     navigate('/survey')
   }
 
-  const handleSubmit = () => {
-    console.log('Final submission:', responses)
-    toast.success('🎉 Survey submitted!')
-    resetSurvey()
-    navigate('/submitted')
-  }
+  // const handleSubmit = () => {
+  //   console.log('Final submission:', responses)
+  //   toast.success('🎉 Survey submitted!')
+  //   resetSurvey()
+  //   navigate('/submitted')
+  // }
 
   return (
     <div className="max-w-4xl mx-auto p-8">
@@ -81,11 +84,12 @@ const ReviewPage = () => {
       <div className="mt-8 flex flex-col items-center gap-4">
         <CSVExportButton />
         <button
-          onClick={handleSubmit}
+          onClick={() => setShowModal(true)}
           className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700"
         >
           ✅ Submit Survey
         </button>
+
         <button
           onClick={() => {
             resetSurvey()
@@ -97,6 +101,17 @@ const ReviewPage = () => {
           🔄 Reset Survey
         </button>
       </div>
+      <EmailModal
+        isOpen={showModal}
+        responses={responses}
+        onClose={(success) => {
+          setShowModal(false)
+          if (success) {
+            resetSurvey()
+            navigate('/submitted')
+          }
+        }}
+      />
     </div>
   )
 }
