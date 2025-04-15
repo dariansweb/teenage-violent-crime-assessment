@@ -1,6 +1,6 @@
 # 🧠 Teenage Violent Crime Assessment — Survey App
 
-Live Site: [https://teenage-violent-crime-assessment.vercel.app/survey](https://teenage-violent-crime-assessment.vercel.app/survey)  
+Live Site: [https://teenage-violent-crime-assessment.vercel.app/survey](https://teenage-violent-crime-assessment.vercel.app/)  
 GitHub: [https://github.com/dariansweb/teenage-violent-crime-assessment](https://github.com/dariansweb/teenage-violent-crime-assessment)
 
 ---
