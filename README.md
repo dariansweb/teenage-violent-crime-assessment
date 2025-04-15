@@ -20,6 +20,45 @@ Built with compassion and modern UX, this tool equips **case managers, therapist
 This application is a fully dynamic, JSON-driven, client-side **survey wizard**, designed for ease of use, accessibility, and emotional sensitivity. Users can complete multiple sections, receive autosaved feedback, review answers, and export responses — all without backend infrastructure.
 
 ---
+---
+
+## ⚠️ Disclaimer
+
+This survey tool is provided **as a free, open-source template** to assist professionals working in the areas of **juvenile justice**, **mental health**, **social services**, and **community-based support**.
+
+> **I am not a licensed therapist, psychologist, legal professional, or medical authority.**  
+> This project is a technical resource — not a clinical assessment or diagnostic tool.
+
+### 📬 About Submissions and Data
+
+- This tool does **not include a backend** or database storage.
+- Any information submitted using this tool is only handled through **email (via EmailJS)** or **client-side downloads (CSV)**.
+- No data is stored or reviewed by the developer.
+- Users are responsible for maintaining **data security**, **compliance**, and **confidentiality** according to their organization's policies and local laws.
+
+### 💌 Intentions and Use
+
+This survey app was built to:
+- Empower case managers and youth service providers with better tools
+- Promote insight, reflection, and data-driven care
+- Offer a **free and customizable** alternative to expensive and impersonal vendor systems
+
+I believe software can be a form of service — and I built this as an act of stewardship, not for profit or personal recognition.
+
+If you choose to use or adapt this tool, please do so responsibly.
+
+### 📜 Licensing
+
+This project is MIT licensed and is offered **as-is**, with no warranties or guarantees of fitness for a particular purpose. Use is at your own discretion and risk.
+
+---
+
+🙏 Thank you for being someone who wants to make a difference.
+
+— Darian Ross  
+[https://github.com/dariansweb](https://github.com/dariansweb)
+
+---
 
 ## ✨ Features
 
